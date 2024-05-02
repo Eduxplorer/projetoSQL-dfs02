@@ -1,0 +1,27 @@
+tipos de campos:
+
+Caracteres:
+
+- varchar(255)
+- char(255) -> unicode
+- text
+
+Inteiros:
+
+-int
+-bit -> 0 ou 1
+
+Reais:
+-decimal(9,2)
+-float(9,2)
+-double()
+-real
+
+
+Datas:
+
+-date -> yyyy-mm-dd
+-time -> hh:mm:ss
+-datetime -> yyyy-mm-dd hh:mm:ss
+
+Booleanos: 
