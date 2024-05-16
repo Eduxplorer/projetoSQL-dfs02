@@ -25,3 +25,16 @@ Datas:
 -datetime -> yyyy-mm-dd hh:mm:ss
 
 Booleanos: 
+
+
+Tipos de registros
+
+Caracter = 'Senac'
+
+Numérico: Inteiro = 10
+		  Real = 20.35
+
+Data ='2024-05-16'
+Hora '14:06:00'
+
+Booleano = true ou false
