@@ -25,6 +25,7 @@ telefone char(9),
 primary key(idCliente)
 );
 
+
 create table tbLivros(
 idLivro int not null auto_increment,
 titulo varchar(100),
@@ -34,6 +35,8 @@ idGenero int not null,
 primary key(idLivro),
 foreign key(idGenero) references tbGeneros(idGenero)
 );
+
+
 
 
 create table tbVendas(
@@ -109,13 +112,46 @@ insert into tbItens_Vendas(idVenda, idLivro, quantidade, subtotal) values(3, 7, 
 insert into tbItens_Vendas(idVenda, idLivro, quantidade, subtotal) values(2, 4, 1, 20.30);
 
 
-insert into tbEscreve(idLivro, idAutor) values();
-
--- Pesquisar os campos da tabela
-
+insert into tbEscreve(idLivro,idAutor)values(4,5);
+insert into tbEscreve(idLivro,idAutor)values(3,2);
+insert into tbEscreve(idLivro,idAutor)values(1,3);
+ 
+-- Pesquisar os campos das tabelas
+ 
 select * from tbGeneros;
 select * from tbAutores;
 select * from tbClientes;
 select * from tbLivros;
 select * from tbVendas;
 select * from tbItens_Vendas;
+select * from tbEscreve;
+
+
+--  Alterando Registros das Tabelas
+
+
+update tbClientes set nome = 'Matheus Augusto' where idCliente = 2;
+
+update tbClientes set nome = 'Luan Gustavo', telefone = '980865786' where idCliente = 3;
+
+
+
+select * from tbClientes;
+
+update tbLivros set titulo = 'O Duque e Eu', preco = 30.90, estoque = 5, idGenero = 6 where idLivro = 6; 
+
+update tbLivros set titulo = 'O Amor de Coxinha', preco = 79.99, estoque = 1, idGenero = 4 where idLivro = 5;
+
+select * from tbLivros;
+
+-- Apagando os registros da tabela
+
+-- delete from tbItens_Vendas where idVenda = 3;
+
+-- delete from tbVendas where idVenda=3;
+
+-- delete from tbClientes where idCliente = 3;
+
+
+select * from tbVendas;
+select * from tbClientes;
