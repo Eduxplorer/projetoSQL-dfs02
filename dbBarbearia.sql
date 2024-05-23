@@ -25,3 +25,14 @@ delete from tbProdutos where codProd = 3;
 select * from tbProdutos;
 
 select codProd as 'Código', descricao as 'Descrição', marca as 'Marca', preco as 'Preço' from tbProdutos;
+
+
+-- Colunas virtuais
+
+select codProd, descricao, marca, preco, 'promoção' as 'promo' from tbProdutos;
+
+-- Utilizando Calculos no SQL e Aumentando 10%
+
+update tbProdutos set preco = preco * 1.10 where codProd = 4;
+
+select * from tbProdutos;
