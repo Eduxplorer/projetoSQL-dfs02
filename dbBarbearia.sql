@@ -36,3 +36,19 @@ select codProd, descricao, marca, preco, 'promoção' as 'promo' from tbProdutos
 update tbProdutos set preco = preco * 1.10 where codProd = 4;
 
 select * from tbProdutos;
+
+-- Calculando valores tabelas
+
+select codProd * 3.141692 as 'Calculando o PI', preco * 0.90 as 'Descontos' from tbProdutos;
+
+--  Dar 80% de desconto 
+
+update tbProdutos set preco = preco * 0.20 where codProd = 1;
+
+select preco from tbProdutos;
+
+-- clausula where / operadores
+
+select * from tbProdutos where preco
+
+

@@ -38,3 +38,14 @@ Data ='2024-05-16'
 Hora '14:06:00'
 
 Booleano = true ou false
+
+
+>
+<
+>=
+<=
+<>
+
+and
+or 
+not
