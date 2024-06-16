@@ -169,4 +169,4 @@ select codCid as 'Código', sigla_est as 'Estado', nome_cid as 'Cidade' from tbC
 
 -- Clientes
 
-insert into tbClientes(nome_cli, end_cli, renda_cli, sexo_cli) values('Jóse Nogueira', 'Rua A', 1500.00, 'M'), ('Ângelo Pereira', 'Rua B', 2000.00, 'M'), ('Além Mar Paranhos', 'Rua C', 1500.00, 'M'), ('Catarina Souza', 'Rua D', 892.00, 'F'), ('Vagner Costa', 'Rua E', 950.00, 'M'), ('Antenor da Costa', 'Rua F', 1582.00, 'M'), ('Maria Amélia de souza', 'Rua G', 1152, 'F'); -- Terminar
+insert into tbClientes(nome_cli, end_cli, renda_cli, sexo_cli) values('Jóse Nogueira', 'Rua A', 1500.00, 'M'), ('Ângelo Pereira', 'Rua B', 2000.00, 'M'), ('Além Mar Paranhos', 'Rua C', 1500.00, 'M'), ('Catarina Souza', 'Rua D', 892.00, 'F'), ('Vagner Costa', 'Rua E', 950.00, 'M'), ('Antenor da Costa', 'Rua F', 1582.00, 'M'), ('Maria Amélia de souza', 'Rua G', 1152, 'F'), ('Paulo Roberto Silva', 'Rua H', 3250.00, 'M'), ('Fátima Souza', 'Rua I', 1632.00, 'F'), ('Joel da Rocha', 'Rua J', 2000.00, 'M');
