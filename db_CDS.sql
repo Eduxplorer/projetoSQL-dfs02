@@ -102,13 +102,11 @@ foreign key(codFunc) references tbFuncionarios(codFunc)
 
 create table tbTitulosPedidos(
 num_ped int not null,
-codCli int not null,
-codFunc int not null,
-data_ped datetime not null,
-val_ped decimal(9,2) not null default 0 check(val_ped >= 0),
-primary key(num_ped),
-foreign key(codCli) references tbClientes(codCli),
-foreign key(codFunc) references tbFuncionarios(codFunc)
+codTit int not null,
+qtd_cd int not null check(qtd_cd >= 1),
+val_cd decimal(9,2) not null check(val_cd > 0),
+foreign key(num_ped) references tbPedidos(val_cd),
+foreign key(codTit) references tbTitulos(codTit)
 );
 
 create table tbTitulosArtistas(
@@ -170,3 +168,45 @@ select codCid as 'Código', sigla_est as 'Estado', nome_cid as 'Cidade' from tbC
 -- Clientes
 
 insert into tbClientes(nome_cli, end_cli, renda_cli, sexo_cli) values('Jóse Nogueira', 'Rua A', 1500.00, 'M'), ('Ângelo Pereira', 'Rua B', 2000.00, 'M'), ('Além Mar Paranhos', 'Rua C', 1500.00, 'M'), ('Catarina Souza', 'Rua D', 892.00, 'F'), ('Vagner Costa', 'Rua E', 950.00, 'M'), ('Antenor da Costa', 'Rua F', 1582.00, 'M'), ('Maria Amélia de souza', 'Rua G', 1152, 'F'), ('Paulo Roberto Silva', 'Rua H', 3250.00, 'M'), ('Fátima Souza', 'Rua I', 1632.00, 'F'), ('Joel da Rocha', 'Rua J', 2000.00, 'M');
+
+select codCli as 'Código do Cliente', codCid as 'Código da Cidade', nome_cli as 'Nome', end_cli as 'Endereço', renda_cli as 'Renda', sexo_cli as 'Sexo' from tbClientes order by codCli;
+
+-- Conjuges
+
+insert into tbConjuge(nome_conj, renda_conj, sexo_conj) values('Carla Nogueira', 2500.00, 'F'), ('Emilia Pereira', 5500.00, 'F'), ('Altiva da Costa', 3000.00, 'F'), ('Carlos de Souza', 3250.00, 'M');
+
+select codConj as 'Código', nome_conj as 'Nome', renda_conj as 'Renda', sexo_conj as 'Sexo' from tbConjuge order by codConj;
+
+-- Funcionários
+
+insert into tbFuncionarios(nome_func, end_func, sal_func, sexo_func) values('Vânia Gabriela Pereira', 'Rua A', 2500.00, 'F'), ('Norberto Pereira da Silva', 'Rua B', 300.00, 'M'), ('Olavo Linhares', 'Rua C', 580.00, 'M'), ('Paula da Silva', 'Rua D', 3000.00, 'F'), ('Rolando Rocha', 'Rua E', 2000.00, 'M');
+
+select codFunc as 'Código', nome_func as 'Nome', end_func as 'Endereço', sal_func as 'Salário', sexo_func as 'Sexo' from tbFuncionarios order by codFunc;
+
+-- Dependentes
+
+insert into tbDependentes(nome_dep, sexo_cli) values('Ana Pereira', 'F'), ('Roberto Pereira', 'M'), ('Celso Pereira', 'M'), ('Brisa Linhares', 'F'), ('Mari Sol Linhares', 'F'), ('Sonia da Silva', 'F');
+
+select codDep as 'Código do Dependente', codFunc as 'Código do Funcionário', nome_dep as 'Nome', sexo_cli as 'Sexo' from tbDependentes order by codDep;
+
+-- Titulos
+
+insert into tbTitulos(nome_cd, val_cd, qtd_estq) values('Tribalistas', 30.00, 1500), ('Tropicália', 50.00, 500), ('Aquele Abraço', 50.00, 600), ('Refazenda', 60.00, 1000), ('Totalmente Demais', 50.00, 2000), ('Travessia', 55.00, 500), ('Courage', 30.00, 200), ('Legião Urbana', 20.00, 100), ('The Beatles', 30.00, 300), ('Rita lee', 30.00, 500);
+
+select codTit as 'Titulo', codCat as 'Categoria', codGrav as 'Gravadora', nome_cd as 'Nome', val_cd as 'Valor', qtd_estq as 'Quantidade' from tbTitulos order by codTit;
+
+-- Pedidos
+
+insert into tbPedidos(data_ped, val_ped) values('02-05-02', 1500.00), ('02-05-02', 50.00), ('02-06-02', 100.00), ('02-02-03', 200.00), ('02-03-03', 300.00), ('02-03-03', 100.00), ('02-03-03', 50.00), ('02-03-03', 50.00), ('02-03-03', 2000.00), ('02-03-03', 3000.00);
+
+select num_ped as 'Pedido', codCid as 'Cidade', codFunc as 'Funcionário', data_ped as 'Data', val_ped as 'Valor' from tbPedidos order by num_ped;
+
+-- Titulos Artista
+
+select codTit as 'Titulo', codArt as 'Artista' from tbTitulosArtistas order by codTit;
+
+-- Titulos Pedido
+
+insert into tbTitulosPedidos(qtd_cd, val_cd) values(2, 30.00), (3, 20.00), (1, 50.00), (3, 30.00), (2, 40.00), (3, 20.00), (2, 25.00), (3, 30.00), (1, 35.00), (2, 55.00), (4, 60.00), (3, 15.00), (2, 15.00);
+
+select num_ped as 'Pedido', codTit as 'Titulo', qtd_cd as 'Quantidade', val_cd as 'Valor' from tbTitulosPedidos order by num_ped;
