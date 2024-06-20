@@ -89,6 +89,7 @@ foreign key(codCat) references tbCategorias(codCat),
 foreign key(codGrav) references tbGravadoras(codGrav)
 );
 
+
 create table tbPedidos(
 num_ped int not null auto_increment,
 codCli int not null,
@@ -105,7 +106,7 @@ num_ped int not null,
 codTit int not null,
 qtd_cd int not null check(qtd_cd >= 1),
 val_cd decimal(9,2) not null check(val_cd > 0),
-foreign key(num_ped) references tbPedidos(val_cd),
+foreign key(num_ped) references tbPedidos(num_ped),
 foreign key(codTit) references tbTitulos(codTit)
 );
 
@@ -167,46 +168,73 @@ select codCid as 'Código', sigla_est as 'Estado', nome_cid as 'Cidade' from tbC
 
 -- Clientes
 
-insert into tbClientes(nome_cli, end_cli, renda_cli, sexo_cli) values('Jóse Nogueira', 'Rua A', 1500.00, 'M'), ('Ângelo Pereira', 'Rua B', 2000.00, 'M'), ('Além Mar Paranhos', 'Rua C', 1500.00, 'M'), ('Catarina Souza', 'Rua D', 892.00, 'F'), ('Vagner Costa', 'Rua E', 950.00, 'M'), ('Antenor da Costa', 'Rua F', 1582.00, 'M'), ('Maria Amélia de souza', 'Rua G', 1152, 'F'), ('Paulo Roberto Silva', 'Rua H', 3250.00, 'M'), ('Fátima Souza', 'Rua I', 1632.00, 'F'), ('Joel da Rocha', 'Rua J', 2000.00, 'M');
+insert into tbClientes(codCid, nome_cli, end_cli, renda_cli, sexo_cli) values(1, 'Jóse Nogueira', 'Rua A', 1500.00, 'M'), (1, 'Ângelo Pereira', 'Rua B', 2000.00, 'M'), (1, 'Além Mar Paranhos', 'Rua C', 1500.00, 'M'), (1, 'Catarina Souza', 'Rua D', 892.00, 'F'), (1, 'Vagner Costa', 'Rua E', 950.00, 'M'), (2, 'Antenor da Costa', 'Rua F', 1582.00, 'M'), (2, 'Maria Amélia de souza', 'Rua G', 1152, 'F'), (2, 'Paulo Roberto Silva', 'Rua H', 3250.00, 'M'), (3, 'Fátima Souza', 'Rua I', 1632.00, 'F'), (3, 'Joel da Rocha', 'Rua J', 2000.00, 'M');
 
 select codCli as 'Código do Cliente', codCid as 'Código da Cidade', nome_cli as 'Nome', end_cli as 'Endereço', renda_cli as 'Renda', sexo_cli as 'Sexo' from tbClientes order by codCli;
 
 -- Conjuges
 
-insert into tbConjuge(nome_conj, renda_conj, sexo_conj) values('Carla Nogueira', 2500.00, 'F'), ('Emilia Pereira', 5500.00, 'F'), ('Altiva da Costa', 3000.00, 'F'), ('Carlos de Souza', 3250.00, 'M');
+insert into tbConjuge(codCli, nome_conj, renda_conj, sexo_conj) values(1, 'Carla Nogueira', 2500.00, 'F'), (2, 'Emilia Pereira', 5500.00, 'F'), (6, 'Altiva da Costa', 3000.00, 'F'), (7, 'Carlos de Souza', 3250.00, 'M');
 
 select codConj as 'Código', nome_conj as 'Nome', renda_conj as 'Renda', sexo_conj as 'Sexo' from tbConjuge order by codConj;
 
 -- Funcionários
 
-insert into tbFuncionarios(nome_func, end_func, sal_func, sexo_func) values('Vânia Gabriela Pereira', 'Rua A', 2500.00, 'F'), ('Norberto Pereira da Silva', 'Rua B', 300.00, 'M'), ('Olavo Linhares', 'Rua C', 580.00, 'M'), ('Paula da Silva', 'Rua D', 3000.00, 'F'), ('Rolando Rocha', 'Rua E', 2000.00, 'M');
+insert into tbFuncionarios(nome_func, end_func, sal_func, sexo_func) values('Vânia Gabriela Pereira', 'Rua A', 2500.00, 'F'), ('Norberto Pereira da Silva', 'Rua B', 300.00, 'M'), ('Olavo Linhares', 'Rua C', 580.00, 'M'), ('Paula da Silva', 'Rua D', 3000.00, 'F'), ('Rolando Rocha', 'Rua E', 2000.00, 'M'), ('Tadano Cabral', 'Rua F', 1200, 'M'), ('Kaori da Mata', 'Rua G', 11000.00, 'F');
 
-select codFunc as 'Código', nome_func as 'Nome', end_func as 'Endereço', sal_func as 'Salário', sexo_func as 'Sexo' from tbFuncionarios order by codFunc;
+select codFunc as 'Código', nome_func as 'Nome', end_func as 'Endereço', sal_func as 'Salário', sexo_func as 'Sexo' from tbFuncionarios order by codFunc limit 5;
 
 -- Dependentes
 
-insert into tbDependentes(nome_dep, sexo_cli) values('Ana Pereira', 'F'), ('Roberto Pereira', 'M'), ('Celso Pereira', 'M'), ('Brisa Linhares', 'F'), ('Mari Sol Linhares', 'F'), ('Sonia da Silva', 'F');
+insert into tbDependentes(codFunc, nome_dep, sexo_dep) values(1, 'Ana Pereira', 'F'), (1,'Roberto Pereira', 'M'), (1, 'Celso Pereira', 'M'), (3, 'Brisa Linhares', 'F'), (3, 'Mari Sol Linhares', 'F'), (4, 'Sonia da Silva', 'F');
 
-select codDep as 'Código do Dependente', codFunc as 'Código do Funcionário', nome_dep as 'Nome', sexo_cli as 'Sexo' from tbDependentes order by codDep;
+select codDep as 'Código do Dependente', codFunc as 'Código do Funcionário', nome_dep as 'Nome', sexo_dep as 'Sexo' from tbDependentes order by codDep;
 
 -- Titulos
 
-insert into tbTitulos(nome_cd, val_cd, qtd_estq) values('Tribalistas', 30.00, 1500), ('Tropicália', 50.00, 500), ('Aquele Abraço', 50.00, 600), ('Refazenda', 60.00, 1000), ('Totalmente Demais', 50.00, 2000), ('Travessia', 55.00, 500), ('Courage', 30.00, 200), ('Legião Urbana', 20.00, 100), ('The Beatles', 30.00, 300), ('Rita lee', 30.00, 500);
+insert into tbTitulos(codCat, codGrav, nome_cd, val_cd, qtd_estq) values(1, 1, 'Tribalistas', 30.00, 1500), (1, 2, 'Tropicália', 50.00, 500), (1, 1, 'Aquele Abraço', 50.00, 600), (1, 2, 'Refazenda', 60.00, 1000), (1, 3, 'Totalmente Demais', 50.00, 2000), (1, 3, 'Travessia', 55.00, 500), (1, 2, 'Courage', 30.00, 200), (4, 3, 'Legião Urbana', 20.00, 100), (3, 2, 'The Beatles', 30.00, 300), (4, 1, 'Rita lee', 30.00, 500);
 
 select codTit as 'Titulo', codCat as 'Categoria', codGrav as 'Gravadora', nome_cd as 'Nome', val_cd as 'Valor', qtd_estq as 'Quantidade' from tbTitulos order by codTit;
 
 -- Pedidos
 
-insert into tbPedidos(data_ped, val_ped) values('02-05-02', 1500.00), ('02-05-02', 50.00), ('02-06-02', 100.00), ('02-02-03', 200.00), ('02-03-03', 300.00), ('02-03-03', 100.00), ('02-03-03', 50.00), ('02-03-03', 50.00), ('02-03-03', 2000.00), ('02-03-03', 3000.00);
+insert into tbPedidos(codCli, codFunc, data_ped, val_ped) values(1, 2, '02-05-02', 1500.00), (3, 4, '02-05-02', 50.00), (4, 7, '02-06-02', 100.00), (1, 4, '02-02-03', 200.00), (7, 5, '02-03-03', 300.00), (4, 4, '02-03-03', 100.00), (5, 5, '02-03-03', 50.00), (8, 2, '02-03-03', 50.00), (2, 2, '02-03-03', 2000.00), (7, 1, '02-03-03', 3000.00);
 
-select num_ped as 'Pedido', codCid as 'Cidade', codFunc as 'Funcionário', data_ped as 'Data', val_ped as 'Valor' from tbPedidos order by num_ped;
+select num_ped as 'Pedido', codCli as 'Cliente', codFunc as 'Funcionário', data_ped as 'Data', val_ped as 'Valor' from tbPedidos order by num_ped;
 
 -- Titulos Artista
+
+insert into tbTitulosArtistas(codTit, codArt) values(1, 1), (2, 2), (3,2), (4, 2), (5, 3), (6, 4), (7, 4), (8,5), (9, 6), (10, 7);
 
 select codTit as 'Titulo', codArt as 'Artista' from tbTitulosArtistas order by codTit;
 
 -- Titulos Pedido
 
-insert into tbTitulosPedidos(qtd_cd, val_cd) values(2, 30.00), (3, 20.00), (1, 50.00), (3, 30.00), (2, 40.00), (3, 20.00), (2, 25.00), (3, 30.00), (1, 35.00), (2, 55.00), (4, 60.00), (3, 15.00), (2, 15.00);
+insert into tbTitulosPedidos(num_ped, codTit, qtd_cd, val_cd) values(1, 1, 2, 30.00), (1, 2, 3, 20.00), (2, 1, 1, 50.00), (2, 2, 3, 30.00), (3, 1, 2, 40.00), (4, 2, 3, 20.00), (5, 1, 2, 25.00), (6, 2, 3, 30.00), (6, 3, 1, 35.00), (7, 4, 2, 55.00), (8, 1, 4, 60.00), (9, 2, 3, 15.00), (10, 7, 2, 15.00);
 
 select num_ped as 'Pedido', codTit as 'Titulo', qtd_cd as 'Quantidade', val_cd as 'Valor' from tbTitulosPedidos order by num_ped;
+
+
+
+-- Exercicios Pag 88 - Pag 89
+
+-- 1. Selecione o nome dos CDs e o nome da gravadora de cada CD.
+
+select tit.nome_cd as 'CD', grav.nome_grav as 'Gravadora' from tbTitulos as tit inner join tbGravadoras as grav on tit.codGrav = grav.codGrav;
+
+
+-- 2. Selecione o nome dos CDs e o nome da categoria de cada CD.
+
+select tit.nome_cd as 'CD', cat.nome_cat as 'Categoria' from tbTitulos as tit inner join tbCategorias as cat on tit.codCat = cat.codCat; 
+
+
+
+-- 3. Selecione o nome dos CDs, o nome das gravadoras de cada CD e o nome da categoria de cada CD
+
+select tit.nome_cd as 'CD', grav.nome_grav as 'Gravadora', cat.nome_cat as 'Categorias' from tbTitulos as tit inner join tbGravadoras as grav on tit.codGrav = grav.codGrav inner join tbCategorias as cat on tit.codCat = cat.codCat;
+
+
+
+-- 4. Selecione o nome dos clientes e os títulos dos CDs vendidos em cada pedido que o cliente fez.
+
+select cli.nome_cli as 'Cliente', tit.nome_cd as 'Titulo' from tbClientes as cli inner join 
