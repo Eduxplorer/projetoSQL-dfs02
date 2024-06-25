@@ -113,6 +113,7 @@ foreign key(codTit) references tbTitulos(codTit)
 create table tbTitulosArtistas(
 codTit int not null,
 codArt int not null,
+primary key(num_ped, codTit)
 foreign key(codTit) references tbTitulos(codTit),
 foreign key(codArt) references tbArtistas(codArt)
 );
@@ -237,4 +238,12 @@ select tit.nome_cd as 'CD', grav.nome_grav as 'Gravadora', cat.nome_cat as 'Cate
 
 -- 4. Selecione o nome dos clientes e os títulos dos CDs vendidos em cada pedido que o cliente fez.
 
-select cli.nome_cli as 'Cliente', tit.nome_cd as 'Titulo' from tbClientes as cli inner join 
+select cli.nome_cli as 'Cliente', tit.nome_cd as 'Titulo' from tbClientes AS cli
+    INNER JOIN tbPedidos AS ped ON cli.codCli = ped.codCli
+    INNER JOIN tbTitulosPedidos AS pd ON ped.num_ped = pd.num_ped
+    INNER JOIN tbTitulos AS tit ON pd.codTit = tit.codTit;
+
+
+-- 5. Selecione o nome do funcionário, número, data e valor dos pedidos que este funcionário registrou, além do nome do cliente que está fazendo o pedido.
+
+select func.nome_func 'Nome do Funcionario', ped.num_ped 'Pedido', ped.data_ped as 'Data', ped.val_ped as 'Valor' from tbFuncionarios 
