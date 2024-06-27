@@ -246,4 +246,20 @@ select cli.nome_cli as 'Cliente', tit.nome_cd as 'Titulo' from tbClientes AS cli
 
 -- 5. Selecione o nome do funcionário, número, data e valor dos pedidos que este funcionário registrou, além do nome do cliente que está fazendo o pedido.
 
-select func.nome_func 'Nome do Funcionario', ped.num_ped 'Pedido', ped.data_ped as 'Data', ped.val_ped as 'Valor' from tbFuncionarios 
+select func.nome_func as 'Nome do Funcionario', ped.num_ped as 'Pedido', ped.data_ped as 'Data', ped.val_ped as 'Valor', cli.nome_cli as 'Cliente' from tbPedidos as ped inner join tbFuncionarios as func on ped.codFunc = func.codFunc inner join tbClientes as cli on ped.codCli = cli.codCli;
+
+
+
+-- 6. Selecione o nome dos funcionários e o nome de todos os dependentes de cada funcionario
+
+select func.nome_func as 'Funcionario', dep.nome_dep as 'Dependente' from tbDependentes as dep inner join tbFuncionarios as func on dep.codFunc = func.codFunc;
+
+
+-- 7. Selecione o nome dos clientes e o nome dos cônjuges de cada cliente.
+
+select cli.nome_cli as 'Cliente', conj.nome_conj as 'Conjuge' from tbConjuge as conj inner join tbClientes as cli on conj.codCli = cli.codCli;
+
+
+-- 8. Selecione o nome de todos os clientes. Se estes possuem cônjuges, mostrar os nomes de seus cônjuges também.
+
+ 
